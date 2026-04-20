@@ -1,0 +1,56 @@
+.optionalTag {
+    font-size: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-left: 8px;
+    color: var(--text-muted);
+}
+
+.checkBoxGroup {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 12px;
+}
+
+.option {
+    background: var(--surface-accent);
+    padding: 16px;
+    border-radius: 16px;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.option .iconBox {
+    width: 32px;
+    height: 32px;
+    background: var(--background);
+    color: var(--background);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.option span {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+.option.selected {
+    outline: 2px solid var(--primary-accent);
+}
+
+.option.selected span {
+    color: var(--text-primary);
+}
+
+.option.selected .iconBox {
+    background: var(--primary-accent);
+    color: var(--background);
+}
