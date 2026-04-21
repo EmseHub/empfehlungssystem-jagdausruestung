@@ -1,6 +1,6 @@
 # Prototyp für ein Empfehlungssystem für Jagdausrüstung
 
-Dieses Repository enthält den frühen Prototypen eines Empfehlungssystems für Jagdausrüstung. Die interaktive Weboberfläche soll den ersten Entwurf des domänenspezifischen Bedarfsmodells (siehe auch [docs/Korrelationsmatrix.xlsx](docs/Korrelationsmatrix.xlsx)) erfahrbar machen und die ersten Erkenntnisse aus den Interviews visualisieren.
+Dieses Repository enthält den frühen Prototypen eines Empfehlungssystems für Jagdausrüstung. Die interaktive Weboberfläche soll den ersten Entwurf des domänenspezifischen Bedarfsmodells (siehe auch [docs/Korrelationsmatrix.xlsx](docs/)) erfahrbar machen und die ersten Erkenntnisse aus den Interviews visualisieren.
 
 ## Projektaufbau
 
@@ -14,7 +14,7 @@ Zunächst werden in [src/models/nutzungskontext.types.ts](src/models/nutzungskon
 
 In [src/models/beduerfnis.types.ts](src/models/beduerfnis.types.ts) wiederum sind die aus den Interviews abgeleiteten **Bedürfnisse** von Jagenden und damit zusammenhängende Datentypen hinterlegt.
 
-Das Herzstück des Modells bilden die Kontext-Regeln in [src/rules/kontextRegeln.ts](src/rules/kontextRegeln.ts). Sie bilden die **Beziehungen zwischen Kontextfaktoren und Bedürfnissen** ab, d. h. aus welchen Ausprägungen einer Dimension sich welche konkreten Bedürfnisse ergeben (Dimension _Terrain_ → Ausprägung _Sumpf_ → Bedürfnis _Wasserdichtigkeit_). In diesen Regeln wird jedem Bedürfnis ein Relevanzgewicht zugewiesen, um die Stärke der Beziehung zu quantifizieren. Etwa bei leichtem Niederschlag ist das Bedürfnis nach Wasserdichtigkeit schwächer ausgeprägt als bei Starkregen. Diese Abstufung muss abgebildet werden können. In Anlehnung an die QFD-Skala ([Wikipedia](https://de.wikipedia.org/wiki/Quality_Function_Deployment#Vorgehensweise)) wird ein Gewicht von 0,3 (`GERING`), 0,6 (`MITTEL`) oder 0,9 (`HOCH`) zugewiesen, um deutlichere Ergebnisse zu erhalten.
+Das Herzstück des Modells bilden die Kontext-Regeln in [src/rules/kontextRegeln.ts](src/rules/kontextRegeln.ts). Sie bilden die **Beziehungen zwischen Kontextfaktoren und Bedürfnissen** ab, d. h. aus welchen Ausprägungen einer Dimension sich welche konkreten Bedürfnisse ergeben (Dimension _Terrain_ → Ausprägung _Sumpf_ → Bedürfnis _Wasserdichtigkeit_). In diesen Regeln wird jedem Bedürfnis ein Relevanzgewicht zugewiesen, um die Stärke der Beziehung zu quantifizieren. Etwa bei leichtem Niederschlag ist das Bedürfnis nach Wasserdichtigkeit schwächer ausgeprägt als bei Starkregen. Diese Abstufung muss abgebildet werden können. In Anlehnung an die QFD-Skala ([Wikipedia](https://de.wikipedia.org/wiki/Quality_Function_Deployment#Vorgehensweise)) wird ein Gewicht von 0,1 (`GERING`), 0,3 (`MITTEL`) oder 0,9 (`HOCH`) zugewiesen, um deutlichere Ergebnisse zu erhalten.
 
 Das **Mapping von Bedürfnissen auf Produktmerkmale** ist in [src/rules/beduerfnisToProduktmerkmalMapping.ts](src/rules/beduerfnisToProduktmerkmalMapping.ts) definiert und bildet die Brücke zu konkreten Produkten.
 
@@ -28,10 +28,12 @@ Jagende wählen, welche Ausprägungen auf ihren individuellen Nutzungskontext zu
 
 ## Installation/Aufruf
 
+Der aktuelle Stand kann unter [https://emsehub.github.io/empfehlungssystem-jagdausruestung/](https://emsehub.github.io/empfehlungssystem-jagdausruestung/) aufgerufen werden.
+
 Um das Projekt lokal zu starten, müssen [Git](https://git-scm.com/install/windows) und [Node.js](https://nodejs.org/en/download) installiert sein. Erst dann können das Repository geklont und die Abhängigkeiten installiert werden:
 
 ```bash
-https://github.com/EmseHub/semesterprojekt-chatbot.git
+git clone https://github.com/EmseHub/semesterprojekt-chatbot.git
 cd empfehlungssystem-jagdausruestung
 npm install
 ```
