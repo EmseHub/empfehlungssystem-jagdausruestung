@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 
 import { DUMMY_DATA_PRODUKTE } from '@/data/produkte';
+import { useProduktEmpfehlung } from '@/hooks/useProduktEmpfehlung';
 
 import {
     DIMENSIONEN,
@@ -23,6 +24,7 @@ import { filterProdukteNachMerkmalen } from '@/logic/filterProdukteNachMerkmalen
 
 import { CheckBoxGroup } from './components/CheckBoxGroup';
 import { RadioButtonGroup } from './components/RadioButtonGroup';
+import { Recommendation } from './components/Recommendation';
 
 export function App() {
     const [nutzungskontext, setNutzungskontext] = useState<Nutzungskontext>({
@@ -38,6 +40,8 @@ export function App() {
         erfahrung: DIMENSIONEN.ERFAHRUNG.AUSPRAEGUNGEN.ANFAENGER,
         jagdhaeufigkeit: DIMENSIONEN.JAGDHAEUFIGKEIT.AUSPRAEGUNGEN.MITTEL,
     });
+
+    const produktempfehlungen = useProduktEmpfehlung(nutzungskontext, DUMMY_DATA_PRODUKTE);
 
     const handleSelectionChange = (
         nutzungskontextKey: NutzungskontextKey,
@@ -115,7 +119,9 @@ export function App() {
                         }
                     )}
                 </div>
-                <div className="recommendation-pane"></div>
+                <div className="recommendation-pane">
+                    <Recommendation produktempfehlungen={produktempfehlungen} />
+                </div>
             </main>
         </>
     );
