@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button } from '@/components/ui/button';
+// import { Button } from '@/components/ui/button';
 
 import { DUMMY_DATA_PRODUKTE } from '@/data/produkte';
 import { useProduktEmpfehlung } from '@/hooks/useProduktEmpfehlung';
