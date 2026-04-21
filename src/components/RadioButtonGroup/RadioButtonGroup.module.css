@@ -1,0 +1,32 @@
+.optionalTag {
+    font-size: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-left: 8px;
+    color: var(--text-muted);
+}
+
+.radioButtonGroup {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.option {
+    background: var(--surface-accent);
+    padding: 10px 24px;
+    border-radius: 40px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+}
+
+.option.selected {
+    background: var(--primary-accent);
+    /* color: var(--bg-color); */
+    color: var(--text-primary);
+}

@@ -22,6 +22,7 @@ import { ermittleProduktmerkmale } from '@/logic/ermittleProduktmerkmale';
 import { filterProdukteNachMerkmalen } from '@/logic/filterProdukteNachMerkmalen';
 
 import { CheckBoxGroup } from './components/CheckBoxGroup';
+import { RadioButtonGroup } from './components/RadioButtonGroup';
 
 export function App() {
     const [nutzungskontext, setNutzungskontext] = useState<Nutzungskontext>({
@@ -98,7 +99,19 @@ export function App() {
                                         );
                                     }}
                                 />
-                            ) : null;
+                            ) : (
+                                <RadioButtonGroup
+                                    key={dimensionKey}
+                                    title={TITEL}
+                                    options={auspraegungenAsOptions}
+                                    selection={
+                                        convertAuspraegungValueToOption(curSelectionValues as AuspraegungValue) || null
+                                    }
+                                    onSelectionChange={(selectedOption) => {
+                                        handleSelectionChange(nutzungskontextKey, selectedOption.label);
+                                    }}
+                                />
+                            );
                         }
                     )}
                 </div>
