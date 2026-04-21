@@ -67,7 +67,7 @@ export function App() {
         <>
             <header>
                 <img
-                    src="/images/logo/ADURO_white_on_black.png"
+                    src={`${import.meta.env.BASE_URL}/images/logo/ADURO_white_on_black.png`}
                     style={{ height: '30px', width: 'auto', alignSelf: 'center', cursor: 'pointer' }}
                     alt="ADURO Logo"
                     onClick={() => {

@@ -80,7 +80,7 @@ const ProductCard = ({ name, kategorie, imageUrl, ranking, score, kritischesMerk
             </div>
             <div className={styles.productImage}>
                 {imageUrl ? (
-                    <img src={`/images/products/${imageUrl}`} />
+                    <img src={`${import.meta.env.BASE_URL}/images/products/${imageUrl}`} />
                 ) : (
                     <div style={{ color: 'var(--text-muted)' }}>BILD</div>
                 )}
