@@ -1,3 +1,4 @@
+import { tempLogData } from '@/App';
 import type { BeduerfnisMitScore } from '@/models/beduerfnis.types';
 import type { BeduerfnisToProduktmerkmalMapping } from '@/models/beduerfnisToProduktmerkmalMapping.types';
 import type { Produktmerkmal, ProduktmerkmalMitScore } from '@/models/produkt.types';
@@ -48,5 +49,10 @@ export function ermittleProduktmerkmale(
         relevanteBeduerfnisse: data.relevanteBeduerfnisse,
     })).sort((a, b) => b.score - a.score);
 
+    console.log(
+        sortedResult.map((item, index) => `${index + 1}. ${item.produktmerkmal}: ${item.score.toFixed(4)}`).join('\n')
+    );
+
+    tempLogData.produktmerkmaleMitScore = sortedResult.slice(0, 10);
     return sortedResult;
 }

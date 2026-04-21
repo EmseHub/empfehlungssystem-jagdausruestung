@@ -25,6 +25,16 @@ import { filterProdukteNachMerkmalen } from '@/logic/filterProdukteNachMerkmalen
 import { CheckBoxGroup } from './components/CheckBoxGroup';
 import { RadioButtonGroup } from './components/RadioButtonGroup';
 import { Recommendation } from './components/Recommendation';
+import type { BeduerfnisMitScore } from './models/beduerfnis.types';
+import type { ProduktmerkmalMitScore } from './models/produkt.types';
+
+export const tempLogData: {
+    beduerfnisseMitScore: BeduerfnisMitScore[];
+    produktmerkmaleMitScore: ProduktmerkmalMitScore[];
+} = {
+    beduerfnisseMitScore: [],
+    produktmerkmaleMitScore: [],
+};
 
 export function App() {
     const [nutzungskontext, setNutzungskontext] = useState<Nutzungskontext>({
@@ -55,7 +65,21 @@ export function App() {
 
     return (
         <>
-            <header></header>
+            <header>
+                <img
+                    src="/images/logo/ADURO_white_on_black.png"
+                    style={{ height: '30px', width: 'auto', alignSelf: 'center', cursor: 'pointer' }}
+                    alt="ADURO Logo"
+                    onClick={() => {
+                        const logBox = document.getElementById('logBox');
+                        if (logBox) {
+                            logBox.style.display === 'none'
+                                ? (logBox.style.display = 'block')
+                                : (logBox.style.display = 'none');
+                        }
+                    }}
+                />
+            </header>
             <main>
                 <div className="configurator-pane">
                     <div className="section-header">
@@ -123,11 +147,53 @@ export function App() {
                     <Recommendation produktempfehlungen={produktempfehlungen} />
                 </div>
             </main>
+            <LogBox />
         </>
     );
 }
 
 export default App;
+
+const LogBox = () => {
+    if (tempLogData.beduerfnisseMitScore.length === 0 && tempLogData.produktmerkmaleMitScore.length === 0) {
+        return null;
+    }
+
+    return (
+        <div
+            id="logBox"
+            style={{
+                position: 'fixed',
+                bottom: '20px',
+                left: '20px',
+                backgroundColor: 'rgba(0,0,0,0.9)',
+                color: '#4a5d23',
+                padding: '15px',
+                borderRadius: '8px',
+                fontSize: '10px',
+                whiteSpace: 'pre-wrap',
+                zIndex: 1000,
+                pointerEvents: 'none',
+                display: 'flex',
+            }}
+        >
+            <div>
+                <strong>Bedürfnisse</strong>
+                <br />
+                {tempLogData.beduerfnisseMitScore
+                    .map((item, index) => `${index + 1}. ${item.beduerfnis}: ${item.score.toFixed(2)}`)
+                    .join('\n')}
+            </div>
+            <div style={{ marginLeft: '12px' }}>
+                <strong>Produktmerkmale</strong>
+                <br />
+                {tempLogData.produktmerkmaleMitScore
+                    .map((item, index) => `${index + 1}. ${item.produktmerkmal}: ${item.score.toFixed(2)}`)
+                    .join('\n')}
+            </div>
+        </div>
+    );
+};
 
 (() => {
     return;

@@ -1,3 +1,4 @@
+import { tempLogData } from '@/App';
 import type { Beduerfnis, BeduerfnisMitScore } from '@/models/beduerfnis.types';
 import type { KontextRegeln } from '@/models/kontextRegeln.types';
 import type { Nutzungskontext } from '@/models/nutzungskontext.types';
@@ -65,5 +66,10 @@ export function ermittleBeduerfnisse(
         (a, b) => b.score - a.score
     );
 
+    console.log(
+        sortedResult.map((item, index) => `${index + 1}. ${item.beduerfnis}: ${item.score.toFixed(4)}`).join('\n')
+    );
+
+    tempLogData.beduerfnisseMitScore = sortedResult.slice(0, 10);
     return sortedResult;
 }
